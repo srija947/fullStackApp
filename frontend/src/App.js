@@ -12,7 +12,6 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
     });
-
     const data = await response.json();
     setEncryptedText(data.encryptedText);
   };
@@ -23,14 +22,21 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ encryptedText: decryptInput }),
     });
-
     const data = await response.json();
     setDecryptedText(data.decryptedText);
   };
 
   return (
-    <div>
-      <h2>Text Encryption & Decryption</h2>
+    <div style={{
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      height: "100vh", 
+      backgroundColor: "#f4f4f4", 
+      fontFamily: "Arial, sans-serif"
+    }}>
+      <h2 style={{ color: "#333" }}>Text Encryption & Decryption</h2>
 
       {/* Encryption */}
       <input
@@ -38,10 +44,15 @@ function App() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Enter text to encrypt"
+        style={{ padding: "10px", margin: "10px", width: "300px", borderRadius: "5px", border: "1px solid #ccc" }}
       />
-      <button onClick={handleEncrypt}>Encrypt</button>
+      <button 
+        onClick={handleEncrypt} 
+        style={{ padding: "10px 20px", backgroundColor: "#007BFF", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+        Encrypt
+      </button>
       <h3>Encrypted Text:</h3>
-      <p>{encryptedText}</p>
+      <p style={{ backgroundColor: "#fff", padding: "10px", borderRadius: "5px", width: "300px", textAlign: "center" }}>{encryptedText}</p>
 
       {/* Decryption */}
       <input
@@ -49,10 +60,15 @@ function App() {
         value={decryptInput}
         onChange={(e) => setDecryptInput(e.target.value)}
         placeholder="Enter text to decrypt"
+        style={{ padding: "10px", margin: "10px", width: "300px", borderRadius: "5px", border: "1px solid #ccc" }}
       />
-      <button onClick={handleDecrypt}>Decrypt</button>
+      <button 
+        onClick={handleDecrypt} 
+        style={{ padding: "10px 20px", backgroundColor: "#28A745", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+        Decrypt
+      </button>
       <h3>Decrypted Text:</h3>
-      <p>{decryptedText}</p>
+      <p style={{ backgroundColor: "#fff", padding: "10px", borderRadius: "5px", width: "300px", textAlign: "center" }}>{decryptedText}</p>
     </div>
   );
 }
